@@ -1,4 +1,4 @@
-# Codechef-Contest-Bot
+# Codechef-Contest-Bot (Selenium Version)
 
 © [Abhijay Rajvansh](http://github.com/abhijayrajvansh), [LinkedIn](https://www.linkedin.com/in/abhijayrajvansh).
 
