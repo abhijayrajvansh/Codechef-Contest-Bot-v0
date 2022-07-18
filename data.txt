@@ -1,0 +1,37 @@
+Scorable Problems for Division 4
+Name Code Successful Submissions Accuracy
+Bidding
+AUCTION
+13762
+83.99
+Pass the Exam
+PASSTHEEXAM
+13469
+82.44
+Chef and Candies
+CHEFCAND
+12709
+76.32
+Slow Solution
+SLOWSOLN
+8173
+50.15
+Journey of the Knight
+KNIGHT2
+6483
+61.39
+Game of Piles Version 1
+GAMEOFPILES1
+6375
+31.97
+Find A, B, C
+FINDABC
+816
+18.02
+Game of Piles Version 2
+GAMEOFPILES2
+751
+4.94
+Largest Square in the garden
+LARSQR31
+214

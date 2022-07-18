@@ -1,4 +1,5 @@
-from curses.ascii import isalnum, isdigit
+from curses.ascii import isalnum, isalpha, isdigit
+from typing import final
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options #to by-pass chrome broswer notification
@@ -66,8 +67,38 @@ for i in prbdata:
         value = ""
     value += i
 
-print(all_problem_data)
-# To be continued...
+final_data = []
+k = 0
+
+for i in range(2, len(all_problem_data)):
+    final_data.append(all_problem_data[i])
+
+problem_code = []
+
+for i in range(0, len(final_data), 4):
+    problem_code.append(final_data[i+1])
+
+print(problem_code)
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Building Testcase Downloader
 def download_testcases():
