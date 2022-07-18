@@ -1,4 +1,5 @@
 from curses.ascii import isalnum, isalpha, isdigit
+from time import sleep
 from typing import final
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -35,7 +36,7 @@ test_url2 = "https://www.codechef.com/START47D"
 test_url3 = "https://www.codechef.com/COOK143D"
 test_url4 = "https://www.codechef.com/JULY221D"
 
-driver.get(test_url1) # launches the broswer and open URL
+driver.get(test_url2) # launches the broswer and open URL
 
 CONTEST_TYPE = "" #DONE 
 
@@ -46,14 +47,12 @@ for i in url_cc_data:
         CONTEST_TYPE += i
 
 
-CC_Path = "/Users/abhijayrajvansh/Desktop/codechef/" + CONTEST_TYPE
+CC_Path = "/Users/abhijayrajvansh/Desktop/codechef/" + CONTEST_TYPE + "/"
 
 try : 
     os.mkdir(CC_Path)
 except FileExistsError:
     print(end="")
-
-total_prob = 0
 
 all_prb_xpath = "//body/div[@id='ember-root']/div[@id='ember256']/main[@class='contest-container content']/section[@class='content-area small-8 columns pl0']/div[2]"
 prbdata = driver.find_element(By.XPATH, all_prb_xpath).text
@@ -79,45 +78,70 @@ for i in range(0, len(final_data), 4):
     problem_code.append(final_data[i+1])
 
 print(problem_code)
-    
 
+#To be updated with live contest pre url of contest of each problem
+PRB_URL = "https://www.codechef.com/problems-old/"
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
+total_problems = len(problem_code)
 
 
 
 # Building Testcase Downloader
-def download_testcases():
+def download_testcases(pb_code):
+    code = ""
+    for i in range(len(pb_code) - 2):
+        code += pb_code[i+2]
 
-    for i in range(1, 5 + 1):
-        
+    array_file = []
+
+    for i in range(1, 5 + 1):   
         try:
+            
             CUSTOM_XPATH_IN = "//span[@id='sample-" + "input" + "-" + str(i) + "']//pre[contains(@class,'mathjax-support')]"
             sample_testcases = driver.find_element(By.XPATH, CUSTOM_XPATH_IN).text
             print(sample_testcases)
+
+
+            curr_prob_path = CC_Path + code
+            sample_file_name = "/sample_input_" + i + ".txt"
+            open(curr_prob_path + "/sample_input_" + i + ".txt", "w")
+
             print()
+            
+            
             CUSTOM_XPATH_OT = "//span[@id='sample-" + "output" + "-" + str(i) + "']//pre[contains(@class,'mathjax-support')]"
             sample_testcases = driver.find_element(By.XPATH, CUSTOM_XPATH_OT).text
             print(sample_testcases)
+
             print()
 
         except:
             print("No further Testcases was found!")
             break
+            
+    arr = []
 
+    n = len(arr)
+    file_num = -1
+    i = 0
+    while True:       
+        if i == n:
+            break
+
+        if arr[i] == "input" or arr[i] == "output":
+            i += 2
+            file_num += 1
         
-# download_testcases()
+        if file_num >= 0:
+            array_file[file_num].write(arr[i] + '\n')
+
+        i += 1
+
+
+
+for i in range(total_problems):
+    driver.get(PRB_URL + problem_code[i])
+    sleep(1)
+    download_testcases(problem_code[i])
+    sleep(1)
+
