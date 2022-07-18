@@ -35,7 +35,7 @@ test_url2 = "https://www.codechef.com/START47D"
 test_url3 = "https://www.codechef.com/COOK143D"
 test_url4 = "https://www.codechef.com/JULY221D"
 
-driver.get(test_url4) # launches the broswer and open URL
+driver.get(test_url1) # launches the broswer and open URL
 
 CONTEST_TYPE = "" #DONE 
 
