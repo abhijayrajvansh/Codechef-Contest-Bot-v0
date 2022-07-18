@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options #to by-pass chrome broswer notification
 from selenium.webdriver.common.by import By
 import os
+import sys
 
 pwd = "/Users/abhijayrajvansh/Downloads"
 PATH = Service(pwd + "/chromedriver")
@@ -18,7 +19,7 @@ PATH = Service(pwd + "/chromedriver")
 CODECHEF_URL = "https://www.codechef.com/"
 
 # CC Type to accept in argument
-url_cc_data = "START47"
+url_cc_data = sys.argv[1]
 
 # Handling Chrome Options:
 chromeOptions = Options()
