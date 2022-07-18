@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.options import Options #to by-pass chrome broswer
 from selenium.webdriver.common.by import By
 import os
 import sys
+import subprocess
 
 pwd = "/Users/abhijayrajvansh/Downloads"
 PATH = Service(pwd + "/chromedriver")
@@ -81,12 +82,6 @@ print("\nTotal problems found:", total_problems, "\n")
 print("All Problems Code: ", problem_code, "\n")
 
 
-def make_file(tc, curr_prob_path, count):
-    sample_file_name = "/sample_input_" + str(count) + ".txt"
-    open(curr_prob_path + sample_file_name, "w")
-    sample_file_name.write(tc[i]) 
-
-
 def total_testcases():
     count = 0
     for i in range(1, 5 + 1):
@@ -106,6 +101,7 @@ def download_testcases(pb_code):
     print("Total Testcases found: ", total_tc)
 
     for tc_num in range(1, total_tc + 1):
+
         strtc = str(tc_num)
         CUSTOM_XPATH_IN = "//span[@id='sample-" + "input" + "-" + strtc + "']//pre[contains(@class,'mathjax-support')]"
         sample_testcases = driver.find_element(By.XPATH, CUSTOM_XPATH_IN).text
@@ -125,10 +121,16 @@ def download_testcases(pb_code):
         curr_prob_path = CC_Path + pb_code
         print("Saving Testcase No:", strtc, "\n")
 
+        
+
         try : 
             os.mkdir(curr_prob_path)
         except FileExistsError:
             print(end="")
+
+        solution_file_path = curr_prob_path + "/" + pb_code + ".cpp"
+        solution_file = open(solution_file_path, "w")
+        subprocess.run(["code", solution_file_path])
 
 
         with open(curr_prob_path + "/sample_input_" + strtc + ".txt", "w") as tc_file:
